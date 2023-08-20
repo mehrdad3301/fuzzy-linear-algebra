@@ -6,7 +6,7 @@ if you only want to read the report, check out the PDF `main.pdf`. Notebook is b
 
 `$ pip install sympy`
 ### Build Yourself
-
+You will need the following requirements
 - Tex Live 
 - [Xetex](https://www.ctan.org/pkg/xetex), a packge for rendering Farsi letters in Tex
 
