@@ -1,0 +1,257 @@
+	\section{حل دستگاه های فازی}
+ 	در این قسمت ابتدا طبق رویکرد \cite{friedman} روشی عمومی برای حل مستقیم دستگاه ارائه می کنیم. در بخش ۲ به بررسی روش های تکراری گاوس-سایدل و ژاکوبی می پردازیم. در بخش آخر به ارائه مثال های عددی می پردازیم. 
+ 	
+	\subsection{روش مستقیم}
+	در اینجا با تبدیل دستگاه $ n \times n $ به دستگاه قطعی $ 2n \times 2n $ روشی برای حل دستگاه فازی ارائه می کنیم. 
+	در واقع ما قصد داریم دستگاه را به صورتی بازنویسی کنیم که دیگر عنصر فازی نداشته باشیم. به عبارتی عناصر دستگاه جدید دیگر به فرم زوج مرتبی نخواهند بود و به راحتی می توانیم دستگاه جدید را حل کنیم. 
+	بردار 
+	$ y = (\underline{y}_1, \underline{y}_2, \ldots, \underline{y}_n, \overline{y}_1, \ldots, \overline{y}_n)^T $
+	را بردار سمت راست و 
+	$ \underline{x}_i, \left(-\overline{x}_i\right)$
+	متغیر های دستگاه قرار می دهیم. دستگاه معادلات جدید را به صورت زیر فرمول بندی می کنیم. 
+	\begin{flalign}
+	\begin{split}
+		\underline{y}_1 & = s_{11}\underline{x}_1 + \ldots + s_{1n}\underline{x}_n +
+		s_{1,n+1}\left(\overline{x}_1\right) + \ldots + s_{1,2n}\left(\overline{x}_n\right)\\
+		\underline{y}_2 & = s_{21}\underline{x}_1 + \ldots + s_{2n}\underline{x}_n +
+		s_{2,n+1}\left(\overline{x}_1\right) + \ldots + s_{2,2n}\left(\overline{x}_n\right)\\
+		\vdots\\ 
+		\underline{y}_n & = s_{n1}\underline{x}_1 + \ldots + s_{nn}\underline{x}_n + 
+		s_{n,n+1}\left(\overline{x}_1\right) + \ldots + s_{n,2n}\left(\overline{x}_n\right)\\
+		-\overline{y}_1 & = s_{n+1,1}\underline{x}_1 + \ldots + s_{n+1,n}\underline{x}_n +
+		s_{n+1,n+1}\left(\overline{x}_1\right) + \ldots + s_{n+1,2n}\left(\overline{x}_n\right)\\
+		-\overline{y}_2 & = s_{n+2,1}\underline{x}_1 + \ldots + s_{n+2,n}\underline{x}_n
+		s_{n+2,n+1}\left(\overline{x}_1\right) + \ldots + s_{n+2,2n}\left(\overline{x}_n\right)\\
+		\vdots\\ 
+		-\overline{y}_n & = s_{2n,1}\underline{x}_1 + \ldots + s_{2n,n}\underline{x}_n + 
+		s_{2n,n+1}\left(\overline{x}_1\right) + \ldots + s_{2n,2n}\left(\overline{x}_n\right)\\
+	\end{split}
+	\end{flalign} 
+	که $ S $ به صورت زیر به دست می آیند 
+	\begin{equation}
+	\label{eq:4}
+		\begin{cases}
+		\text{$s_{ij} = a_{ij}, \quad s_{i+n,j+n} = a_{ij}$} &\quad\text{$a_{ij} \geq 0$}\\
+		\text{$s_{i,j+n} = -a_{i,j}, \quad s_{i+n,j} = -a_{ij} $} &\quad\text{$a_{ij} < 0$}\\
+		\end{cases}
+	\end{equation} 
+	
+	توجه کنید که مقدار $ s_{ij} $ برای مقادیری که توسط رابطه بالا مشخص نمی شوند، ‌صفر است.\\
+	با توجه به روابط بالا دستگاه معادلات جدید به صورت $ \mathbf{SX=Y} $ است که در آن
+	$ \mathbf{S}=(s_{ij})$ \\
+	$ 1 \leq i,j \leq 2n $ 
+	است و \\
+	\begin{center}
+	$
+	X = 
+	\begin{pmatrix} 
+	\underline{x}_1\\
+	\underline{x}_2\\
+	\vdots\\
+	\underline{x}_n\\
+	-\overline{x}_1\\
+	\vdots\\
+	-\overline{x}_n	
+	\end{pmatrix}
+	,
+	Y =
+	\begin{pmatrix} 
+	\underline{y}_1\\
+	\underline{y}_2\\
+	\vdots\\
+	\underline{y}_n\\
+	-\overline{y}_1\\
+	\vdots\\
+	-\overline{y}_n	
+	\end{pmatrix}
+	$
+	\end{center}
+
+	\theoremstyle{definition}
+	\newtheorem{exm}{Theorem}[section]
+	\newtheorem{example}[exm]{مثال}
+	\begin{example}
+		دستگاه  $2 \times 2 $ زیر را در نظر بگیرید. \\
+	\begin{flalign}
+		x_1 - x_2  & = y_1 \nonumber\\
+		x_1 + 2x_2 & = y_2 \nonumber
+	\end{flalign}
+	\end{example}
+	با توجه به روابط \ref{eq:4} می توان ماتریس S را به صورت زیر ساخت.\\
+	\begin{center}
+		$
+		\begin{pmatrix}
+		1 & 0 & 0 & 1 \\
+		1 & 2 & 0 & 0 \\
+		0 & 1 & 1 & 0 \\
+		0 & 0 & 1 & 2 
+		\end{pmatrix}
+		$
+	\end{center}
+
+	به راحتی می توان دید که فرم ماتریس S به صورت زیر است.\\
+	\begin{center}
+		$
+		S = 
+		\begin{pmatrix}
+		B & C \\
+		C & B \\
+		\end{pmatrix}
+		$
+	\end{center}
+	که در آن $ B $ شامل درایه های مثبت ماتریس ضرایب $ A $ و $ C $ از قدرمطلق درایه های منفی تشکیل شده. پس می توان گفت $ A = B - C $.\\
+	دستگاه جدیدی که به دست آوردیم تماما از درایه های قطعی تشکیل شده. تنها در صورتی می توان برای این دستگاه جواب یکتا به دست آورد که ماتریس $ S $ نامنفرد باشد. در اینجا با دو سوال رو به رو می شویم. 
+	\begin{enumerate}
+		\item آیا ماتریس $ S $ نامنفرد است؟
+		\item آیا جواب به دست آمده می تواند تشکیل برداری فازی برای دستگاه اولیه دهد؟‌
+	\end{enumerate}
+
+	اگر که پاسخ سوال ۱ مثبت باشد،‌ پاسخ سوال دوم در صورتی مثبت است که برای هر $ i $,
+	$ \left(\underline{x}ـ{i}\left(r\right), \overline{x}_{i}\left(r\right)\right) $
+	عددی فازی باشد. 
+	
+	در ادامه ابتدا به سوال اول پاسخ می دهیم. باید بررسی کنیم که تحت چه شرایطی ماتریس $ S $ نامنفرد است. از آنجایی که $ S $ را با استفاده از ماتریس ضرایب $ A $ ساختیم، حدس می زنیم که روابطی بین معکوس پذیری $ A $ و $ S $ وجود داشته باشد. مثال بعد نشان می دهد که نامنفرد بودن $ A $ شرط کافی برای معکوس پذیری $ S $ نیست. \\
+	\begin{example}
+
+		دستگاه  $2 \times 2 $ زیر را در نظر بگیرید. \\
+		\begin{flalign}
+		x_1 - x_2  & = y_1 \nonumber\\
+		x_1 + x_2 & = y_2 \nonumber
+		\end{flalign}
+	
+	\end{example}
+	مشابه مقال قبل ماتریس $ S $ را به دست می آوریم. 
+
+	\begin{center}
+	$
+	S = 
+	\begin{pmatrix}
+	1 & 0 & 0 & 1 \\
+	1 & 1 & 0 & 0 \\
+	0 & 1 & 1 & 0 \\
+	0 & 0 & 1 & 1 
+	\end{pmatrix}
+	$
+	\end{center}
+	
+	می توان دید که $ S $ وارون پذیر نیست. 
+	در قضیه بعد شرط لازم و کافی برای معکوس پذیری $ S $ را بیان میکنیم. 
+	\newtheorem{thm}{Theorem}[section]
+	\newtheorem{theorem}[thm]{قضیه}
+	\begin{theorem}
+	\label{thm:1}
+			ماتریس $ S $ نامنفرد است اگر و تنها اگر ماتریس $ A = B - C $ و $ B + C $ نامنفرد باشند. \\
+	\textbf{اثبات:}
+			با توجه به اینکه با جمع ترکیب خطی از سطر ها یا ستون های یک ماتریس تاثیری در دترمینان آن ندارد، می توان به راحتی روابط زیر را به دست آورد.
+
+	\begin{center}	
+	$ 
+	S = 
+	\begin{pmatrix}
+	B & C \\
+	C & B \\
+	\end{pmatrix} 
+	\rightarrow 
+	S_1 = 
+	\begin{pmatrix}
+	B + C & B + C \\
+	C & B \\
+	\end{pmatrix} 
+	\rightarrow 
+	S_2 = 
+	\begin{pmatrix}
+	B + C & 0 \\
+	C & B - C \\
+	\end{pmatrix} 
+	$\\ [10pt]
+	
+	$det(S) = det(S_1) = det(S_2) = det(B + C).det(B - C) = det(B + C).det(A)$\\[10pt]
+	$\rightarrow \quad\quad det(S) \neq 0 \longleftrightarrow det(A) \neq 0 \quad and \quad det(B + C) \neq 0$	
+	\end{center}
+	\end{theorem}
+	قضیه \ref{thm:1} از اهمیت فراوانی برخوردار است از آنجایی که شرطی لازم و کافی برای معکوس پذیری $ S $ بیان می کند. برای حل دستگاه فازی بعد از اینکه فهمیدیم $ S $ معکوس پذیر است باید $ S^{-1} $ را به دست بیاوریم. در ادامه به بیان قضایای و روش هایی برای به دست آوردن $ S^{-1} $  می پردازیم. 
+	
+	\begin{theorem}
+	\label{thm:2} 
+		وارون ماتریس $ S $ در صورت وجود، فرمی مشابه $ S $ دارد. 
+	\[
+		S^{-1} = 
+		\begin{pmatrix}
+		E & D\\ 
+		D & E
+		\end{pmatrix}		
+	\]
+	
+	\end{theorem}
+	برای دیدن اثبات قضیه فوق به \cite{friedman} مراجعه کنید. 
+	با توجه به قضیه \ref{thm:2} $ S^{-1} $ را به صورت زیر به دست می آوریم. 
+	
+	\[
+	SS^{-1} = 
+	\begin{pmatrix}
+	B & C \\ 
+	C & B \\  
+	\end{pmatrix}
+	\begin{pmatrix}
+	D & E \\ 
+	E & D \\
+	\end{pmatrix}
+	\]
+	\begin{align}
+	\label{eq:5}
+	BD + CE = I, \quad CD + BE = 0 
+	\end{align} 
+	با جمع و تفریق دو معادله در رابطه \ref{eq:5} روابط زیر را به دست می آوریم. 
+	\begin{align}
+	\label{eq:6}
+	D + E = (B + C)^{-1}, \quad D - E = (B - C)^{-1}
+	\end{align} 
+	و نتیجتا 
+	\begin{align}
+	\label{eq:7}
+	E = \frac{1}{2}\lbrack(B + C)^{-1} - (B - C)^{-1}\rbrack, \quad 
+	D = \frac{1}{2}\lbrack(B + C)^{-1} + (B - C)^{-1}\rbrack
+	\end{align} 
+	با توجه به فرض نامنفرد بودن $ S $، که معادل با نامنفرد بودن $ B + C $ و $ B - C $است،‌ داریم 
+	\begin{align}
+	\label{eq:8}
+	X = S^{-1}Y
+	\end{align} 
+	که ممکن است $ X $ برداری فازی نباشد. قضیه بعد شرط لازم و کافی برای فازی بودن $ X $ را بیان می کند. 
+	
+	\begin{theorem} 
+		بردار $ X $ ر رابطه \ref{eq:8} فازی است، ‌اگر و تنها اگر $ S^{-1} $ مثبت باشد، به عبارتی باید داشته باشیم
+	\begin{align}
+		\left(S^{-1}\right)_{ij} \geq 0, \quad 1 \leq i,j \leq n 
+	\end{align}
+	\end{theorem}
+	\textbf{اثبات:} 
+	قرار می دهیم 
+	$ .S^{-1} = \left(t\right)_{ij}, 1 \leq i,j \leq n$ 
+از رابطه \ref{eq:8} داریم 
+ 	\begin{align}
+		\underline{x}_i & = \sum_{j=1}^n t_{ij}\underline{y}_i - \sum_{j=1}^n t_{i,n+j}\overline{y}_i, \quad 1 \leq i \leq n\\
+		-\overline{x}_i & = \sum_{j=1}^n t_{n+i,j}\underline{y}_i - \sum_{j=1}^n t_{n+i,n+j}\overline{y}_i, \quad 1 \leq i \leq n
+	\end{align}
+	با توجه به قضیه \ref{thm:2} می توان معادلی برای رابطه ۱۱ به صورت زیر نوشت 
+	\begin{align}
+	\overline{x}_i & = -\sum_{j=1}^n t_{i,n+j}\underline{y}_i + \sum_{j=1}^n t_{i,j}\overline{y}_i, \quad 1 \leq i \leq n
+	\end{align}
+	با کم کردن رابطه۱۰ از ۱۲ رابطه زیر را به دست می آوریم 
+	\begin{align}
+	\overline{x}_i - \underline{x}_i & = \sum_{j=1}^n t_{i,j}\left(\overline{y}_i - \underline{y}_i\right) + \sum_{j=1}^n t_{i,n+j}\left(\overline{y}_i - \underline{y}_i\right), \quad 1 \leq i \leq n
+	\end{align}
+	از آنجایی که $ y $ برداری فازی است،‌ برای هر $ 0 \leq i \leq n $ داریم 
+	$ .\overline{y}_i - \underline{y}_i \geq 0$
+	در نتیجه با توجه به رابطه ۱۳ می توان گفت 
+	$ \overline{x}_i - \underline{x}_i \geq 0$ 
+	اگر و تنها اگر برای هر $ 0 \leq j \leq n $ داشته باشیم
+	$ .t_{ij} \geq 0, 1 \leq j \leq n $
+	پس ثابت کردیم که شرط سوم فازی بودن برقرار است. بعلاوه از روابط ۱۰ و ۱۲ و با توجه به اینکه $ \overline{y}_i $ نزولی یکنوا و 
+	$ \underline{y}_i $ صعودی یکنواست 
+	می توان گفت شرط ۱ و ۲ هم برای $ \underline{x}_i $ و $ \overline{x}_i $ برقرار است. دقت کنید که از چپ و راست پیوسته و کراندار بودن $ \underline{x}_i $ و $ \overline{x}_i $ به وضوح برقرار است چرا که، با توجه به روابط ۱۰ و ۱۲، ترکیبی خطی از $ \underline{y}_i $ و $ \overline{y}_i $ ها هستند.\\~\\
+	متاسفانه احتمال اینکه $ S^{-1} $ شروط قضیه قبل را دارا باشد در عمل کم است. \\
+	\subsection{یک روش جایگزین}
+	از آنجایی که تشکیل یک ماتریس $ 2n \times 2n $ ممکن از لحاظ محاسباتی هزینه بر باشد،‌ عزتی \cite{ezzati} با اقتباس از این روش،‌ روشی جدید برای حل دستگاه های فازی ارائه داد که بجای حل یک سیستم $ 2n \times 2n $ با حل دو دستگاه $ n \times n $ جواب دستگاه معادلات را به دست می آورد. \\
+
+	

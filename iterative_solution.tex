@@ -1,0 +1,209 @@
+\input{direct_solution.tex}
+	\subsection{روش های تکراری}
+	در جبرخطی دیدیم معکوس یک ماتریس معمولا هزینه سنگین محاسباتی دارد و برای حل این مشکل از روش های تکراری برای حل دستگاه معادلات استفاده کردیم. در این بخش قصد داریم به معرفی روش های تکراری برای حل دستگاه های فازی بپردازیم.
+	 
+	\subsubsection{همگرایی}
+	\begin{theorem} 
+	\label{thm:3}
+		اگر ماتریس ضرایب $ A $ غالب قطری اکید باشد،‌ هر دو روش ژاکوبی و گاوس-سایدل در حل معادله دستگاه \ref{eq:1} همگرا هستند.\cite{second_course}
+	\end{theorem}
+	\begin{theorem} 
+	ماتریس $ A $ غالب قطری اکید است اگر و تنها اگر ماتریس $ S $ غالب قطری اکید باشد. 
+	\end{theorem}
+	\textbf{اثبات:}
+	با توجه به مطالب گفته شده در قسمت قبل ماتریس $ B $ و $ C $ به ترتیب عناصر مثبت و منفی $ A $ هستند و اگر درایه ای در $ C $ ناصفر باشد درایه متناظر با آن در $ B $ حتما صفر است. به طور مشابه اگر درایه ای نامنفی در $ B $ باشد درایه متناظر آن در $ C $ حتما صفر است. در واقع با قراردادن ماتریس $ B $ و $ C $ روی یکدیگر قدرمطلق ماتریس $ A $ را به دست آورده ایم. به این ترتیب واضح است که اگر $ A $ غالب قطری اکید باشد،‌$ S $ هم غالب قطری اکید است و بالعکس.  
+	\subsubsection{ژاکوبی}
+	بدون از دست رفتن کلیت، فرض کنید 
+	$ s_{ii} > 0, 1 \leq i \leq 2n $ 
+	.قرار می دهیم 
+	$ S = D + L + U $ 
+	که در آن  \\
+	\begin{center} 
+	$
+	D = 
+	\begin{pmatrix}
+	D_B & 0 \\
+	0 & D_B
+	\end{pmatrix}
+	\quad 
+	L = 
+	\begin{pmatrix}
+	L_B & 0 \\
+	C & L_B
+	\end{pmatrix}
+	\quad
+	U = 
+	\begin{pmatrix}
+	U_B & C \\
+	0 & U_B
+	\end{pmatrix}
+	$
+	\end{center} 
+	دستگاه $ SX = Y $ را به فرم بلوکی زیر می نویسیم. 
+	
+	\begin{center}
+	$
+	\begin{pmatrix}
+	B & C\\ 
+	C & B 
+	\end{pmatrix} 
+	\begin{pmatrix}
+	\underline{X}\\ 
+	-\overline{X}
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+	\underline{Y}\\ 
+	-\overline{Y}
+	\end{pmatrix} 
+	$
+	
+	\end{center}
+	می توان فرم بالا را به صورت زیر نمایش داد. 
+	
+	\begin{center}
+	$
+	\begin{pmatrix}
+	B & -C\\ 
+	-C & B 
+	\end{pmatrix} 
+	\begin{pmatrix}
+	\underline{X}\\ 
+	\overline{X}
+	\end{pmatrix} 
+	=
+	\begin{pmatrix}
+	\underline{Y}\\ 
+	\overline{Y}
+	\end{pmatrix} 
+	$
+	
+	\end{center}
+	با توجه به فرم ژاکوبی داریم 
+	
+	\begin{center} 
+	$
+	\begin{pmatrix}
+	D_B & 0 \\
+	0 & D_B 
+	\end{pmatrix}
+	\begin{pmatrix}
+	\underline{X}\\
+	\overline{X} 
+	\end{pmatrix}
+	+ 
+	\begin{pmatrix}
+	L_B + U_B & -C \\ 
+	-C & L_B + U_B
+	\end{pmatrix}
+	\begin{pmatrix}
+	\underline{X}\\
+	\overline{X} 
+	\end{pmatrix}
+	=
+	\begin{pmatrix}
+	\underline{Y}\\
+	\overline{Y} 
+	\end{pmatrix}
+	$\\
+	\end{center} 
+	با ضرب در $ D_B^{-1} $ روابط تکراری زیر را به دست می آوریم
+	\begin{center}
+	$\underline{X}^{k+1} = D_B^{-1}\underline{Y} - D_B^{-1}(L_B + U_B)\underline{X}^k + D_B^{-1}C\overline{X}^k$	
+	$\overline{X}^{k+1} = D_B^{-1}\overline{Y} - D_B^{-1}(L_B + U_B)\overline{X}^k + D_B^{-1}C\underline{X}^k$
+	\end{center} 
+
+	می توان روابط بالا را به فرم فشرده ماتریسی هم نوشت. بدین صورت که 
+	$
+	X^{k+1} = M_J X^{k} + C_J 
+	$
+	که $ M_J $ و $ C_J $ به فرم زیر هستند 
+	
+	
+	\begin{center}
+		$
+		M_J =
+		\begin{pmatrix} 
+		-D_B^{-1}(L_B + U_B) & D_B^{-1}C \\
+		D_B^{-1}C & -D_B^{-1}(L_B + U_B) 
+		\end{pmatrix} 
+		\quad 
+		C_J = 
+		\begin{pmatrix}
+		D_B^{-1}\underline{Y} \\
+		D_B^{-1}\overline{Y} 
+		\end{pmatrix} 
+		\quad
+		X = 
+		\begin{pmatrix}
+		\underline{X}\\ 
+		\overline{X}
+		\end{pmatrix}
+		$
+	\end{center}
+
+	\pagebreak  
+
+	\subsubsection{گاوس-سایدل}
+	با رویکردی مشابه روش ژاکوبی روابط تکراری را برای روش گاوس-سایدل به دست می آوریم. ابتدا مشابه $ SX = Y $ را برای فرم گاوس سایدل بازنویسی می کنیم. 
+	 
+	 \begin{center} 
+	 	$
+	 	\begin{pmatrix}
+	 	L_B + D_B & 0 \\
+	 	-C & L_B + D_B 
+	 	\end{pmatrix}
+	 	\begin{pmatrix}
+	 	\underline{X}\\
+	 	\overline{X} 
+	 	\end{pmatrix}
+	 	+ 
+	 	\begin{pmatrix}
+	 	U_B & -C \\ 
+	 	0 & U_B
+	 	\end{pmatrix}
+	 	\begin{pmatrix}
+	 	\underline{X}\\
+	 	\overline{X} 
+	 	\end{pmatrix}
+	 	=
+	 	\begin{pmatrix}
+	 	\underline{Y}\\
+	 	\overline{Y} 
+	 	\end{pmatrix}
+	 	$\\
+	 \end{center}
+ 	کافیست معادلات بالا را به صورت تکراری بازنویسی کنیم 
+ 	\begin{center}
+ 		$\underline{X}^{k+1} = \left(L_B + D_B\right)^{-1}\underline{Y} - \left(L_B + D_B\right)^{-1}U_B\underline{X}^k + \left(L_B + D_B\right)^{-1}C\overline{X}^k$	
+ 		 $\overline{X}^{k+1} = \left(L_B + D_B\right)^{-1}\overline{Y} - \left(L_B + D_B\right)^{-1}U_B\overline{X}^k + \left(L_B + D_B\right)^{-1}C\underline{X}^k$	
+ 	\end{center} 
+ 	مشابه قسمت قبل می توان روابط بالا را به فرم ماتریسی هم بازنویسی کرد. به طوری که \\
+ 	$ X^{k+1} = M_{GS}X^k + C_{GS} $ 
+ 	که در آن $M_{GS} $ و $ C_{GS}$ به صورت زیر تعریف می شوند \\
+ 	
+ 	$ 
+ 	M_{GS} = 
+ 	\begin{pmatrix}
+ 	- \left(L_B + D_B\right)^{-1}U_B & \left(L_B + D_B\right)^{-1}C \\ 
+    \left(L_B + D_B\right)^{-1}C & - \left(L_B + D_B\right)^{-1}U_B
+ 	\end{pmatrix}
+ 	\quad
+ 	C_{GS} = 
+ 	\begin{pmatrix}
+ 	\left(L_B + D_B\right)^{-1}\underline{Y}\\
+ 	\left(L_B + D_B\right)^{-1}\overline{Y}
+ 	\end{pmatrix} \\ 	
+ 	$	
+ 	
+ 	اگر شرایط قضیه \ref{thm:3} برقرار باشد، هر دو روش برای هر $ X^0 $ دلخواهی همگرا هستند.
+ 	
+ 	\subsubsection{معیار توقف}
+ 	در سیستم های فازی با توجه به اینکه اعداد فازی به صورت زوج های مرتب هستند،‌ طبیعی است که معیار توقف به صورت دو نامساوی باشد و زمانی توقف کنیم که شرایط هر دو نامساوی برقرار شده باشد. 
+ 	\begin{align}
+ 	\frac{||\overline{X}^{k+1} - \overline{X}^k||}{||\overline{X}^k||} < \epsilon 
+ 	\quad 
+ 	\frac{||\underline{X}^{k+1} - \underline{X}^k||}{||\underline{X}^k||} < \epsilon 
+ 	\end{align}
+ 	
+	
