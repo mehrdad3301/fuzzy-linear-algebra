@@ -10,6 +10,9 @@ You will need the following requirements
 - Tex Live 
 - [Xetex](https://www.ctan.org/pkg/xetex), a packge for rendering Farsi letters in Tex
 
+### Or Use Overleaf ! 
+here's a link to the report in [overleaf](https://www.overleaf.com/read/nvmzndkysryq#87826c)
+
 ### Acknowledgements 
 This work was done as part of an undergraduate course in Numerical Linear Algebra by Amirkabir University of Technology. I wanted to thank Dr. Akbar Shirilord for his invaluable advice, continuous support, and detailed feedbacks. 
 
